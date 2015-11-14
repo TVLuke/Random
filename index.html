@@ -2,8 +2,22 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
+var restUrl = "https://script.google.com/macros/s/AKfycbyFiB0I1n1Sqvm9r1qodmzEDY7BzFSy6OAEjPKB_92wuvr_18CZ/exec";
 $(document).ready(function() {
-    $('#content').text("you have no products in your shopping basket.");
+    $('#content').text("loltest.");
+	
+	$.getJSON( "https://script.google.com/macros/s/AKfycbyFiB0I1n1Sqvm9r1qodmzEDY7BzFSy6OAEjPKB_92wuvr_18CZ/exec", function(data) {
+	  
+	  var items = [];
+	  $.each( data, function( key, val ) {
+	    items.push( "<li id='lol'>lol2</li>" );
+	  });
+ 
+	  $( "<ul/>", {
+	    "class": "my-new-list",
+	    html: items.join( "" )
+	  }).appendTo( "body" );
+	});
 });
 </script>
 </head>
