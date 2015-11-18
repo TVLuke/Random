@@ -9,9 +9,10 @@ $(document).ready(function() {
 	
 	$.getJSON( "https://script.google.com/macros/s/AKfycbyFiB0I1n1Sqvm9r1qodmzEDY7BzFSy6OAEjPKB_92wuvr_18CZ/exec", function(data) {
 	  
+	  
 	  var items = [];
 	  $.each( data, function( key, val ) {
-	    items.push( "<li id='lol'>lol2</li>" );
+	    items.push( "<li id='lol'><p>lol2</p></li>" );
 	  });
  
 	  $( "<ul/>", {
