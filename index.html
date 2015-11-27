@@ -11,19 +11,19 @@ $(document).ready(function() {
 	setInterval(function(){
 		counter++;
 	    loadTiles(counter)
-	}, 10000);
+	}, 300000);
 });
 
 function setTile() {
 	$("<div id='todo' class='tile'>").appendTo("body");
+	$("<div id='loltest' class='tile'>").appendTo("body");
 	loadTiles(0);
 }
 function loadTiles(counter) {
-	if(counter%30 == 0) {
 		
-		$("#todo").html('<object data="http://tvluke.github.io/Freezer/todo.html">');
-	}
-	$("#todo").html('<object data="http://tvluke.github.io/Freezer/todo.html">');
+		$("#todo").html('<object id="todoinside" data="http://tvluke.github.io/Freezer/todo.html">');
+		$("#todoinside").width($("#todoinside").parent().width());
+		$("#todoinside").height($("#todoinside").parent().height());
 }
 </script>
 </head>
