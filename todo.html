@@ -1,0 +1,57 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+var restUrl = "https://script.google.com/macros/s/AKfycbzdHIE7UjfETO4k0KK9gOPMTWoBcvXdTq7ghKUpw7e2djU011E/exec";
+$(document).ready(function() {
+	$.getJSON(restUrl, function(data) {
+	   
+	  var items = [];
+	  $.each( data, function( key, val ) {
+		  if(!val.done) {
+			  var dueDate = new Date(val.due);
+			  var now = new Date();
+			  if(dueDate < now) {
+			  	items.push("<p class='false'><b>&#x2610; "+val.description+" ("+getCorrectDateString(dueDate)+")</b></p>");
+			  } else {
+				items.push("<p class='false'>&#x2610; "+val.description+" ("+getCorrectDateString(dueDate)+")</p>");	
+			  }
+			}
+	  });
+	  $.each( data, function( key, val ) {
+		  if(val.done) {
+	    	  items.push("<p class='true'>"+val.description+"</p>");
+			}
+	  });
+	  
+  		$("<div id='postit'>").appendTo("#content");
+  		$("<h1>TODO</h1>").appendTo("#postit");
+	  	$.each(items, addToPostit);
+	});
+});
+
+function addToPostit(key, value) {
+	$(value).appendTo("#postit");
+}
+
+function getCorrectDateString(dueDate) {
+	var monthNumber = dueDate.getMonth()+1;
+	var dayNumber = dueDate.getDate();
+	
+	if(monthNumber < 10) {
+		monthNumber = "0"+monthNumber;
+	}
+	if(dayNumber < 10) {
+		dayNumber = "0"+dayNumber;
+	}
+	
+	return dayNumber+"."+monthNumber+"."+(1900+dueDate.getYear())
+}
+</script>
+</head>
+<body>
+	<div id="content"></div>
+
+</body>
+</html>
