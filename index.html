@@ -1,14 +1,33 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css"></link>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
+var counter=0;
 $(document).ready(function() {
-        $("#content")
-            .html('<object data="http://tvluke.github.io/Freezer/todo.html"/>');
+	
+	setTile();
+	
+	setInterval(function(){
+		counter++;
+	    loadTiles(counter)
+	}, 10000);
+});
+
+function setTile() {
+	$("<div id='todo' class='tile'>").appendTo("body");
+	loadTiles(0);
+}
+function loadTiles(counter) {
+	if(counter%30 == 0) {
+		
+		$("#todo").html('<object data="http://tvluke.github.io/Freezer/todo.html">');
+	}
+	$("#todo").html('<object data="http://tvluke.github.io/Freezer/todo.html">');
+}
 </script>
 </head>
 <body>
-	<div id="content"></div>
+	<div id="header">Kopfzeile</div>
 </body>
 </html>
