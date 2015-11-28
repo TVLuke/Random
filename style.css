@@ -1,6 +1,6 @@
 .tile {
 	width:400px;
-	height:300px;
+	height:400px;
     background-color: gray;
 	float: left;
 }
@@ -8,7 +8,7 @@
 #postit {
   width:300px;
   padding:0px 20px;
-  margin:20px;
+  margin:0px;
   background-color:#F2EA7E;
   background-image:-webkit-repeating-linear-gradient(top, #F2EA7E 25px, #F2EA7E 25px, #F6D5AD 26px, #F2EA7E 26px, #F2EA7E 50px);
   background-image:-moz-repeating-linear-gradient(top, #F2EA7E 25px, #F2EA7E 25px, #F6D5AD 26px, #F2EA7E 26px, #F2EA7E 50px);
