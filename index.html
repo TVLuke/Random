@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 function setTile() {
 	$("<div id='todo' class='tile'>").appendTo("body");
-	$("<div id='loltest' class='tile'>").appendTo("body");
+	$("<div id='loltest' class='tilewide'>").appendTo("body");
 	$("<div id='trave' class='tilewide'>").appendTo("body");
 	loadTiles(0);
 }
@@ -25,6 +25,7 @@ function loadTiles(counter) {
 		$("#todo").html('<object id="todoinside" data="http://tvluke.github.io/Freezer/todo.html">');
 		$("#todoinside").width($("#todoinside").parent().width());
 		$("#todoinside").height($("#todoinside").parent().height());
+		$("#loltest").html('<iframe width="400" height="400" src="https://www.youtube.com/embed/videoseries?list=PL96KS5OE2xS95qjDQOyONM9BuoLeqHYjF&autoplay=1" frameborder="0"></iframe>');
 		$("#trave").html('<object id="traveinside" data="http://tvluke.github.io/Freezer/travepegel.html">');
 		$("#traveinside").width($("#traveinside").parent().width());
 		$("#traveinside").height($("#traveinside").parent().height());
@@ -34,6 +35,6 @@ function loadTiles(counter) {
 <body>
 	<div id="header">Kopfzeile</div>
 	<div id="settings"></div>
-	<iframe width="400" height="400" src="https://www.youtube.com/embed/videoseries?list=PL96KS5OE2xS95qjDQOyONM9BuoLeqHYjF&autoplay=1" frameborder="0"></iframe>
+	
 </body>
 </html>
