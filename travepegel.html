@@ -34,7 +34,6 @@
 	
 	var prevvalue=-1;
 	$.ajax({ url: 'https://www.pegelonline.wsv.de/webservices/rest-api/v2/stations/L%C3%9CBECK-BAUHOF/W/measurements.json', success: function(pegelstaende) { 
-		alert("a");
 		for(var i=0; i<pegelstaende.length; i++) {
 			if(prevvalue>0 && (prevvalue-pegelstaende[i].value > 30 || pegelstaende[i].value-prevvalue > 30)) {
 					//there are some strange, wrong values in the json sometimes... this should get most of them
@@ -48,7 +47,6 @@
 				prevvalue = pegelstaende[i].value;
 			}
 		}
-		alert("b");
         var options = {
           chart: {
             title: 'Travestand in Lübeck',
