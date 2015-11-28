@@ -1,0 +1,68 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">
+    google.load('visualization', '1.1', {packages: ['line']});
+    google.setOnLoadCallback(drawChart);
+
+	var normal = 0.0;
+	var niedrig = 0.0;
+	var hoch = 0.0;
+	$.ajax({ url: 'https://www.pegelonline.wsv.de/webservices/rest-api/v2/stations/L%C3%9CBECK-BAUHOF/W.json?includeCharacteristicValues=true', success: function(values) { 
+		for(var i=0; i<values.characteristicValues.length; i++) {
+			if(values.characteristicValues[i].shortname == 'NW') {
+				niedrig = values.characteristicValues[i].value;
+			}
+			if(values.characteristicValues[i].shortname == 'MW') {
+				normal = values.characteristicValues[i].value;
+			}
+			if(values.characteristicValues[i].shortname == 'HW') {
+				hoch = values.characteristicValues[i].value;
+			}
+		}
+	} });	
+
+    function drawChart() {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'Zeit');
+    data.addColumn('number', 'Trave');
+    data.addColumn('number', 'Normal');
+    data.addColumn('number', 'Niedrigstwert');
+	data.addColumn('number', 'Hoechstwert');
+	
+	var prevvalue=-1;
+	$.ajax({ url: 'https://www.pegelonline.wsv.de/webservices/rest-api/v2/stations/L%C3%9CBECK-BAUHOF/W/measurements.json', success: function(pegelstaende) { 
+		for(var i=0; i<pegelstaende.length; i++) {
+			if(prevvalue>0 && (prevvalue-pegelstaende[i].value > 30 || pegelstaende[i].value-prevvalue > 30)) {
+					//there are some strange, wrong values in the json sometimes... this should get most of them
+			} else {
+				//do not add all data... it takes for fucking ever...
+				if(i%50 == 0 || i == (pegelstaende.length-1)) {
+					var arrayelement = [i+1, pegelstaende[i].value, normal, niedrig, hoch];
+					data.addRow(arrayelement);
+				}
+				prevvalue = pegelstaende[i].value;
+			}
+		}
+        var options = {
+          chart: {
+            title: 'Travestand in L&uuml;beck',
+            subtitle: 'in cm'
+          },
+          width: 1500,
+          height: 500
+        };
+
+        var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+        chart.draw(data, options);
+	} });
+}
+</script>
+</head>
+<body>
+  <div id="linechart_material"></div>
+</body>
+</html>
