@@ -5,6 +5,13 @@
 	float: left;
 }
 
+.tilewide {
+	width:800px;
+	height:400px;
+    background-color: gray;
+	float: left;
+}
+
 #postit {
   width:300px;
   padding:0px 20px;
