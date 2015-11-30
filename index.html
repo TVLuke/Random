@@ -23,10 +23,11 @@ function setTile() {
 	});
 	loadTiles();
 }
+
 function loadTiles() {
 	$.getJSON(restUrl, function(data) {
 		$.each( data, function( key, val ) {
-			if(counter%val.refreshratesec == 0) {
+			if(counter == val.refreshratesec || counter%val.refreshratesec == 0) {
 				var insidename = val.name+'inside';
 				$("#"+val.name+"").html('<object id='+insidename+' data="'+val.url+'">');
 				$("#"+insidename).width($("#"+insidename).parent().width());
