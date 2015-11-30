@@ -17,22 +17,23 @@ $(document).ready(function() {
 
 function setTile() {
 	$.getJSON(restUrl, function(data) {
-		$("<div id='todo' class='tile'>").appendTo("body");
-		$("<div id='loltest' class='tilewide'>").appendTo("body");
-		$("#loltest").html('<iframe width="790" height="390" src="https://www.youtube.com/embed/videoseries?list=PL96KS5OE2xS95qjDQOyONM9BuoLeqHYjF&autoplay=1" frameborder="0"></iframe>');
-		$("<div id='trave' class='tilewide'>").appendTo("body");
+		$.each( data, function( key, val ) {
+			$("<div id='"+val.name+"' class='"+val.type+"'>").appendTo("body");
+		});
 	});
-	loadTiles(0);
+	loadTiles();
 }
-function loadTiles(counter) {
-		
-		$("#todo").html('<object id="todoinside" data="http://tvluke.github.io/Freezer/todo.html">');
-		$("#todoinside").width($("#todoinside").parent().width());
-		$("#todoinside").height($("#todoinside").parent().height());
-
-		$("#trave").html('<object id="traveinside" data="http://tvluke.github.io/Freezer/travepegel.html">');
-		$("#traveinside").width($("#traveinside").parent().width());
-		$("#traveinside").height($("#traveinside").parent().height());
+function loadTiles() {
+	$.getJSON(restUrl, function(data) {
+		$.each( data, function( key, val ) {
+			if(counter%val.refreshratesec == 0) {
+				var insidename = val.name+'inside';
+				$("#"+val.name+"").html('<object id='+insidename+' data="'+val.url+'">');
+				$("#"+insidename).width($("#"+insidename).parent().width());
+				$("#"+insidename).height($("#"+insidename).parent().height());
+			}
+		});
+	});
 }
 </script>
 </head>
