@@ -57,7 +57,7 @@
           e.preventDefault();
           var form = $(e.target);
 
-          $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:videoVotes}});
+          $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
         });
       });
 
