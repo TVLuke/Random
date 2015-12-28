@@ -31,7 +31,7 @@
         var uid = $.urlParam('uid');
         $.get(getVotesUrl+'?uid='+uid, function(data) {
           alert(Object.keys(videoVotes).length);
-        }
+        });
 
         var randomizedList = [];
         /*
