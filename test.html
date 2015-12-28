@@ -14,6 +14,7 @@
 
     <script>
       var randomTesturl="https://media.ccc.de/public/conferences/78";
+      var getVotesUrl="https://script.google.com/macros/s/AKfycbyPTyCyN4okcbjQ4-TL9K3JaeUNv-6agQ16cg9AE4Cdrq94KJOS/exec";
       var videoVotes = {};
 
       $.urlParam = function(name){
@@ -28,8 +29,10 @@
 
       $( document ).ready(function() {
         var uid = $.urlParam('uid');
-        alert(uid);
-        
+        $.get(getVotesUrl+'?uid='+uid, function(data) {
+          alert(Object.keys(videoVotes).length);
+        }
+
         var randomizedList = [];
         /*
         while(data.events.length > 0) {
