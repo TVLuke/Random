@@ -3,7 +3,6 @@
 <meta charset="utf-8">
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.0.2/url.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -17,10 +16,20 @@
       var randomTesturl="https://media.ccc.de/public/conferences/78";
       var videoVotes = {};
 
-      $( document ).ready(function() {
-        var uid = $.url.attr('uid');
-        alert(uid);
+      $.urlParam = function(name){
+          var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+          if (results==null){
+             return null;
+          }
+          else{
+             return results[1] || 0;
+          }
+      }
 
+      $( document ).ready(function() {
+        var uid = $.urlParam('uid');
+        alert(uid);
+        
         var randomizedList = [];
         /*
         while(data.events.length > 0) {
