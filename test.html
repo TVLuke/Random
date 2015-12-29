@@ -32,6 +32,7 @@
         $.get(getVotesUrl+'?uid='+uid, function(data) {
           var keys = Object.keys(data.votes);
           for(var i in keys) {
+            alert(keys[i]);
             voteForVideo(keys[i]);
             updateButtonText();
           }
